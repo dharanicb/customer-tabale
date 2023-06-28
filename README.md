@@ -13,53 +13,53 @@ Create a table with the name `todo` with the following columns,
 | email    | VARCHAR(50)     |
 
 and write APIs to perform operations on the table `customerTable.db`,
-
--- Create 'customers' table
-CREATE TABLE customers (
-  customerid INT PRIMARY KEY,
-  name VARCHAR(50),
-  email VARCHAR(50)
-);
-
--- Insert values into 'customers' table
-INSERT INTO customers (customerid, name, email)
-VALUES
-  (1, 'Ravi', 'ravi123@gmail.com'),
-  (2, 'Kishan', 'kishan11@gmail.com'),
-  (3, 'Sameer', 'sameer44@gmail.com');
-
--- Create 'subjects' table
-CREATE TABLE subjects (
-  subjectld INT PRIMARY KEY,
-  subjectName VARCHAR(50)
-);
-
--- Insert values into 'subjects' table
-INSERT INTO subjects (subjectld, subjectName)
-VALUES
-  (1, 'English'),
-  (2, 'Hindi'),
-  (3, 'Maths');
-
--- Create 'subject_student_mapping' table
-CREATE TABLE subject_student_mapping (
-  mappingId INT PRIMARY KEY,
-  customerId INT,
-  subjectId INT,
-  FOREIGN KEY (customerId) REFERENCES customers(customerid),
-  FOREIGN KEY (subjectId) REFERENCES subjects(subjectld)
-);
-
--- Insert values into 'subject_student_mapping' table
-INSERT INTO subject_student_mapping (mappingId, customerId, subjectId)
-VALUES
-  (1, 1, 1),
-  (2, 1, 2),
-  (3, 1, 3),
-  (4, 2, 1),
-  (5, 3, 3),
-  (6, 3, 1);
-
+```
+               Create 'customers' table
+              CREATE TABLE customers (
+                customerid INT PRIMARY KEY,
+                name VARCHAR(50),
+                email VARCHAR(50)
+              );
+              
+              -- Insert values into 'customers' table
+              INSERT INTO customers (customerid, name, email)
+              VALUES
+                (1, 'Ravi', 'ravi123@gmail.com'),
+                (2, 'Kishan', 'kishan11@gmail.com'),
+                (3, 'Sameer', 'sameer44@gmail.com');
+              
+              -- Create 'subjects' table
+              CREATE TABLE subjects (
+                subjectld INT PRIMARY KEY,
+                subjectName VARCHAR(50)
+              );
+              
+              -- Insert values into 'subjects' table
+              INSERT INTO subjects (subjectld, subjectName)
+              VALUES
+                (1, 'English'),
+                (2, 'Hindi'),
+                (3, 'Maths');
+              
+              -- Create 'subject_student_mapping' table
+              CREATE TABLE subject_student_mapping (
+                mappingId INT PRIMARY KEY,
+                customerId INT,
+                subjectId INT,
+                FOREIGN KEY (customerId) REFERENCES customers(customerid),
+                FOREIGN KEY (subjectId) REFERENCES subjects(subjectld)
+              );
+              
+              -- Insert values into 'subject_student_mapping' table
+              INSERT INTO subject_student_mapping (mappingId, customerId, subjectId)
+              VALUES
+                (1, 1, 1),
+                (2, 1, 2),
+                (3, 1, 3),
+                (4, 2, 1),
+                (5, 3, 3),
+                (6, 3, 1);
+```
 
 <MultiLineNote>
   
