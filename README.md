@@ -1,19 +1,65 @@
-# Todo Application
+# customer table 
 
-Given an `app.js` file and an empty database file `todoApplication.db`.
+Given an `app.js` file and an empty database file `customersTables.db`.
 
 Create a table with the name `todo` with the following columns,
 
-**Todo Table**
+**customers tabale **
 
-| Column   | Type    |
-| -------- | ------- |
-| id       | INTEGER |
-| todo     | TEXT    |
-| priority | TEXT    |
-| status   | TEXT    |
+| Column   | Type            |
+| -------- | -------         |
+|customerid| INT PRIMARY KEY |
+| name     | VARCHAR(50)     |
+| email    | VARCHAR(50)     |
 
-and write APIs to perform operations on the table `todo`,
+and write APIs to perform operations on the table `customerTable.db`,
+
+-- Create 'customers' table
+CREATE TABLE customers (
+  customerid INT PRIMARY KEY,
+  name VARCHAR(50),
+  email VARCHAR(50)
+);
+
+-- Insert values into 'customers' table
+INSERT INTO customers (customerid, name, email)
+VALUES
+  (1, 'Ravi', 'ravi123@gmail.com'),
+  (2, 'Kishan', 'kishan11@gmail.com'),
+  (3, 'Sameer', 'sameer44@gmail.com');
+
+-- Create 'subjects' table
+CREATE TABLE subjects (
+  subjectld INT PRIMARY KEY,
+  subjectName VARCHAR(50)
+);
+
+-- Insert values into 'subjects' table
+INSERT INTO subjects (subjectld, subjectName)
+VALUES
+  (1, 'English'),
+  (2, 'Hindi'),
+  (3, 'Maths');
+
+-- Create 'subject_student_mapping' table
+CREATE TABLE subject_student_mapping (
+  mappingId INT PRIMARY KEY,
+  customerId INT,
+  subjectId INT,
+  FOREIGN KEY (customerId) REFERENCES customers(customerid),
+  FOREIGN KEY (subjectId) REFERENCES subjects(subjectld)
+);
+
+-- Insert values into 'subject_student_mapping' table
+INSERT INTO subject_student_mapping (mappingId, customerId, subjectId)
+VALUES
+  (1, 1, 1),
+  (2, 1, 2),
+  (3, 1, 3),
+  (4, 2, 1),
+  (5, 3, 3),
+  (6, 3, 1);
+
 
 <MultiLineNote>
   
@@ -24,226 +70,37 @@ and write APIs to perform operations on the table `todo`,
 
 ### API 1
 
-#### Path: `/todos/`
+#### Path: `/login/`
 
 #### Method: `GET`
 
 - **Scenario 1**
 
   - **Sample API**
-    ```
-    /todos/?status=TO%20DO
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose status is 'TO DO'
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 1,
-        todo: "Watch Movie",
-        priority: "LOW",
-        status: "TO DO"
-      },
-      ...
-    ]
+  ```
+   POST http://localhost:3000/login
     ```
 
 - **Scenario 2**
 
   - **Sample API**
     ```
-    /todos/?priority=HIGH
+    Get http://localhost:3000/customer
     ```
   - **Description**:
 
-    Returns a list of all todos whose priority is 'HIGH'
+    Returns a list of all customer tabale
 
-  - **Response**
-
-    ```
-    [
-      {
-        id: 2,
-        todo: "Learn Node JS",
-        priority: "HIGH",
-        status: "IN PROGRESS"
-      },
-      ...
-    ]
-    ```
 
 - **Scenario 3**
 
   - **Sample API**
     ```
-    /todos/?priority=HIGH&status=IN%20PROGRESS
+      Get http://localhost:3000/subjects
     ```
   - **Description**:
 
-    Returns a list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
+    Returns a list
 
-  - **Response**
 
-    ```
-    [
-      {
-        id: 2,
-        todo: "Learn Node JS",
-        priority: "HIGH",
-        status: "IN PROGRESS"
-      },
-      ...
-    ]
-    ```
-
-- **Scenario 4**
-
-  - **Sample API**
-    ```
-    /todos/?search_q=Play
-    ```
-  - **Description**:
-
-    Returns a list of all todos whose todo contains 'Play' text
-
-  - **Response**
-
-    ```
-    [
-      {
-        id: 4,
-        todo: "Play volleyball",
-        priority: "MEDIUM",
-        status: "DONE"
-      },
-      ...
-    ]
-    ```
-
-### API 2
-
-#### Path: `/todos/:todoId/`
-
-#### Method: `GET`
-
-#### Description:
-
-Returns a specific todo based on the todo ID
-
-#### Response
-
-```
-{
-  id: 2,
-  todo: "Learn JavaScript",
-  priority: "HIGH",
-  status: "DONE"
-}
-```
-
-### API 3
-
-#### Path: `/todos/`
-
-#### Method: `POST`
-
-#### Description:
-
-Create a todo in the todo table,
-
-#### Request
-
-```
-{
-  "id": 10,
-  "todo": "Finalize event theme",
-  "priority": "LOW",
-  "status": "TO DO"
-}
-```
-
-#### Response
-
-```
-Todo Successfully Added
-```
-
-### API 4
-
-#### Path: `/todos/:todoId/`
-
-#### Method: `PUT`
-
-#### Description:
-
-Updates the details of a specific todo based on the todo ID
-
-- **Scenario 1**
-
-  - **Request**
-    ```
-    {
-      "status": "DONE"
-    }
-    ```
-  - **Response**
-
-    ```
-    Status Updated
-    ```
-
-- **Scenario 2**
-
-  - **Request**
-    ```
-    {
-      "priority": "HIGH"
-    }
-    ```
-  - **Response**
-
-    ```
-    Priority Updated
-    ```
-
-- **Scenario 3**
-
-  - **Request**
-    ```
-    {
-      "todo": "Some task"
-    }
-    ```
-  - **Response**
-
-    ```
-    Todo Updated
-    ```
-
-### API 5
-
-#### Path: `/todos/:todoId/`
-
-#### Method: `DELETE`
-
-#### Description:
-
-Deletes a todo from the todo table based on the todo ID
-
-#### Response
-
-```
-Todo Deleted
-```
-
-<br/>
-
-Use `npm install` to install the packages.
-
-**Export the express instance using the default export syntax.**
-
-**Use Common JS module syntax.**
+- 
