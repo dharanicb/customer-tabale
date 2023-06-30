@@ -61,12 +61,7 @@ and write APIs to perform operations on the table `customerTable.db`,
                 (6, 3, 1);
 ```
 
-<MultiLineNote>
-  
-  - Replace the spaces in URL with `%20`.
-  - Possible values for `priority` are `HIGH`, `MEDIUM`, and `LOW`.
-  - Possible values for `status` are `TO DO`, `IN PROGRESS`, and `DONE`.
-</MultiLineNote>
+
 
 ### API 1
 
